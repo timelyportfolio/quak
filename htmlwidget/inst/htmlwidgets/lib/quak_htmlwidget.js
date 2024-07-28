@@ -47014,8 +47014,10 @@ tr:first-child td {
           await coordinator.exec([exec]);
         }
       },
-      async render(el4) {
-        let dt12 = await datatable(tableName, { coordinator, height: 500 });
+      async render(el4, options2) {
+        let { height } = options2;
+        height = height ? height : 500;
+        let dt12 = await datatable(tableName, { coordinator, height });
         el4.appendChild(dt12.node());
       }
     };

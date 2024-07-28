@@ -21,7 +21,7 @@ HTMLWidgets.widget({
         }
 
         await q.initialize(options);
-        await q.render(el);
+        await q.render(el, {height});
 
       },
 
