@@ -2,12 +2,13 @@ node_modules
 .venv
 dist
 .DS_Store
-
 # Python
 __pycache__
 .ipynb_checkpoints
 data/
-
 .vite/
 src/quak/widget.js
 notebooks
+.Rproj.user
+.Rhistory
+quak.Rproj
