@@ -22,6 +22,7 @@
 		"@uwdata/mosaic-core": "https://cdn.jsdelivr.net/npm/@uwdata/mosaic-core@0.10.0/+esm",
 		"@uwdata/mosaic-sql": "https://cdn.jsdelivr.net/npm/@uwdata/mosaic-sql@0.10.0/+esm",
 		"@uwdata/mosaic-plot": "https://cdn.jsdelivr.net/npm/@uwdata/mosaic-plot@0.10.0/+esm",
+		"@uwdata/vgplot": "https://cdn.jsdelivr.net/npm/@uwdata/vgplot@0.10.0/+esm",
 		"apache-arrow": "https://esm.sh/apache-arrow@16.1.0",
 		"htl": "https://esm.sh/htl@0.3.1",
 		"d3-selection": "https://esm.sh/d3-selection@3.0.0",

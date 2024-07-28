@@ -1,6 +1,7 @@
 /// <reference types="npm:vite/client" />
 import * as mc from "@uwdata/mosaic-core";
 import * as msql from "@uwdata/mosaic-sql";
+import * as vg from "@uwdata/vgplot";
 
 import { assert } from "./utils/assert.ts";
 import { datatable } from "./clients/DataTable.ts";
@@ -56,7 +57,7 @@ async function main() {
 	let source = new URLSearchParams(location.search).get("source");
 	handleLoading(source);
 	let tableName = "df";
-	let coordinator = new mc.Coordinator();
+	let coordinator = new vg.coordinator();
 	let connector = mc.wasmConnector();
 	let db = await connector.getDuckDB();
 	coordinator.databaseConnector(connector);
@@ -82,10 +83,19 @@ async function main() {
 	}
 
 	await coordinator.exec([exec]);
-	let dt = await datatable(tableName, { coordinator, height: 500 });
+	const cf = vg.Selection.crossfilter();
+	let dt = await datatable(tableName, { coordinator, height: 500, filterBy: cf });
 	options.remove();
 	table.replaceChildren();
 	table.appendChild(dt.node());
+
+	let tbl_el = vg.table({
+		from: tableName,
+		filterBy: cf,
+		height: 250
+	})
+
+	document.getElementById('vgplot').appendChild(tbl_el);
 }
 
 main();

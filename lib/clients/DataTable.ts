@@ -25,6 +25,7 @@ import { StatusBar } from "./StatusBar.ts";
 interface DataTableOptions {
 	table: string;
 	schema: arrow.Schema;
+	filterBy?: any;
 	height?: number;
 }
 
@@ -35,6 +36,7 @@ export async function datatable(
 	table: string,
 	options: {
 		coordinator?: Coordinator;
+		filterBy?: any,
 		height?: number;
 		columns?: Array<string>;
 	} = {},
@@ -50,6 +52,7 @@ export async function datatable(
 	let client = new DataTable({
 		table,
 		schema: empty.schema,
+		filterBy: options.filterBy ? options.filterBy : Selection.crossfilter(),
 		height: options.height,
 	});
 	options.coordinator.connect(client);
@@ -96,7 +99,7 @@ export class DataTable extends MosaicClient {
 	#sql = signal(undefined as string | undefined);
 
 	constructor(source: DataTableOptions) {
-		super(Selection.crossfilter());
+		super(source.filterBy);
 		this.#format = formatof(source.schema);
 		this.#pendingInternalRequest = false;
 		this.#meta = source;
